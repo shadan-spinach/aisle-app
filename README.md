@@ -8,8 +8,8 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-- Python 3.6+
-- Git
+*   Python 3.6+
+*   Git
 
 ### Cloning the Repository
 
@@ -108,11 +108,18 @@ aisle-app/
 
 ## Module Explanations
 
-- `main.py`: The main entry point for the command-line application. It handles user input/output and orchestrates the application's flow.
-- `parser.py`: Contains the `InputParser` class, which uses regular expressions to parse raw string input into structured `Item` objects.
-- `item.py`: Defines the `Item` class, which serves as the data model for a single product, holding its name, price, quantity, and import status.
-- `config.py`: A centralized module for all configuration settings like tax rates, rounding factors, and keywords for tax-exempt items. This makes adjustments easy without changing core logic.
-- `calculator.py`: Holds the core business logic in the `TaxCalculator` class. It contains the algorithms for calculating sales tax and import duties.
-- `receipt.py`: Defines the `Receipt` class, which manages the collection of all items. It calculates total taxes and the final grand total, and formats the final receipt for printing.
-- `exceptions.py`: Contains custom exception classes (`AisleAppException`, `InvalidInputError`) for more specific and robust error handling.
-- `tests/`: This directory holds all unit tests. `test_parser.py` validates the input parsing, and `test_calculator.py` verifies the tax calculation algorithms.
+*   `main.py`: The main entry point for the command-line application. It handles argument parsing, input/output, and orchestrates the application's flow. It uses `InputParser` to process input lines, `TaxCalculator` to calculate taxes, and `Receipt` to generate the final output.
+
+*   `parser.py`: Contains the `InputParser` class, responsible for parsing raw string input (representing an item) into structured `Item` objects. It uses regular expressions to validate the input format and extract item details such as quantity, name, and price.
+
+*   `item.py`: Defines the `Item` class, which serves as the data model for a single product. It stores essential information about an item, including its name, price, quantity, import status, calculated sales tax, and total price.
+
+*   `config.py`: A centralized module for managing configuration settings. It defines constants for tax rates (`SALES_TAX_RATE`, `IMPORT_DUTY_RATE`), a list of keywords for tax-exempt items (`EXEMPT_ITEMS`), and the rounding factor (`ROUNDING_FACTOR`).
+
+*   `calculator.py`: Contains the `TaxCalculator` class, which encapsulates the core tax calculation logic. It determines whether an item is tax-exempt and calculates sales tax and import duties based on the item's properties and the configuration settings.
+
+*   `receipt.py`: Defines the `Receipt` class, which manages a collection of `Item` objects representing a shopping basket. It provides methods for adding items, calculating the total sales tax and the final grand total, and formatting the output as a human-readable receipt.
+
+*   `exceptions.py`: Contains custom exception classes (`AisleAppException`, `InvalidInputError`) that provide more specific and robust error handling for various scenarios within the application.
+
+*   `tests/`: This directory houses the unit tests for the application. `test_parser.py` validates the input parsing logic in `InputParser`, `test_calculator.py` verifies the tax calculation algorithms in `TaxCalculator`, and `test_receipt.py` ensures the correct calculation of totals and formatting of the receipt in the `Receipt` class.
