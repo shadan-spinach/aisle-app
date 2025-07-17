@@ -10,12 +10,13 @@ from .calculator import TaxCalculator
 class Receipt:
     """Manages a collection of items and calculates totals."""
 
-    def __init__(self):
+    def __init__(self, tax_calculator: TaxCalculator):
         self._items: List[Item] = []
+        self.tax_calculator = tax_calculator
 
     def add_item(self, item: Item):
         """Adds an item to the receipt and calculates its taxes."""
-        item.sales_tax = TaxCalculator.calculate_total_tax(item)
+        item.sales_tax = self.tax_calculator.calculate_total_tax(item)
         item.total_price = item.price + item.sales_tax
         self._items.append(item)
 

@@ -4,9 +4,9 @@ Tests for the InputParser.
 
 import unittest
 from decimal import Decimal
-from ..item import Item
-from ..parser import InputParser
-from ..exceptions import InvalidInputError
+from aisle_app.item import Item
+from aisle_app.parser import InputParser
+from aisle_app.exceptions import InvalidInputError
 
 class TestInputParser(unittest.TestCase):
 
